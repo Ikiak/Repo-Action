@@ -8,4 +8,4 @@ jobs:
       - name: Listar Arquivos Step
         run: |
           echo "Arquivos no repositório:"
-          ls -a
+          ls -la
