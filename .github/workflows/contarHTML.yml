@@ -1,0 +1,14 @@
+name: Contar HTML Action
+
+on: [push]
+jobs:
+  contarHTML_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Contar Arquivos HTML
+        run: |
+          echo "Contando arquivos HTML:"
+          find . -name "*.html"
