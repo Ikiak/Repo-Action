@@ -6,4 +6,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Data e Hora Step
-        run: echo "Data e Hora':' $(date)"
+        run: |
+          echo "Data e Hora: $(date)"
