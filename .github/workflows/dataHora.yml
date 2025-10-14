@@ -1,0 +1,9 @@
+name: Data e Hora Action
+
+on: [push]
+jobs:
+  dataHora_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Data e Hora Step
+        run: echo "Data e Hora':' $(date)"
