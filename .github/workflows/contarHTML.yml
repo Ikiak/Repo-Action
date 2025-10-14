@@ -11,4 +11,4 @@ jobs:
       - name: Contar Arquivos HTML
         run: |
           echo "Contando arquivos HTML:"
-          find . -name "*.html"
+          find . -name "*.html" | wc -l
