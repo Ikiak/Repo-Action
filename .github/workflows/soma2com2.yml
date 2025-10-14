@@ -1,0 +1,11 @@
+name: Soma 2 + 2 Action
+
+on: [push]
+jobs:
+  soma_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Soma Step
+        run: |
+          resultado=$((2 + 2))
+          echo "Resultado da soma: $resultado"
