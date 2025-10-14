@@ -1,0 +1,11 @@
+name: Listar Arquivos Action
+
+on: [push]
+jobs:
+  listarArquivos_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Listar Arquivos Step
+        run: |
+          echo "Arquivos no repositório:"
+          ls -a
