@@ -1,0 +1,23 @@
+name: Rodar só no sábado
+
+on:
+  schedule:
+    - cron: '0 * * * *' # roda todo início de hora, mas o script filtra
+
+jobs:
+  saturday-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Verificar se é sábado
+        run: |
+          DIA=$(TZ='America/Sao_Paulo' date +%u)
+          if [ "$DIA" -eq 6 ]; then
+            echo "IS_SATURDAY=true" >> "$GITHUB_ENV"
+          else
+            echo "IS_SATURDAY=false" >> "$GITHUB_ENV"
+          fi
+
+      - name: Rodar script de sábado
+        if: ${{ env.IS_SATURDAY == 'true' }}
+        run: echo "Executando script de sábado!"

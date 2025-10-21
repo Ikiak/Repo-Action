@@ -1,0 +1,14 @@
+name: Toda Meia Noite Conta Quantos Arquivos Gerais
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  count_files_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Contar arquivos gerais
+        run: find . -type f | wc -l

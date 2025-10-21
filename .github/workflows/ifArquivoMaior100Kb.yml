@@ -1,0 +1,25 @@
+name: IF Verificar tamanho do arquivo
+
+on: [push]
+
+jobs:
+  verificaTamanho_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Detectar arquivos >100KB
+        id: detect
+        run: |
+          if find . -type f -size +100k -print -quit >/dev/null; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Fazer algo se houver arquivos grandes
+        if: steps.detect.outputs.exists == 'true'
+        run: |
+          echo "Arquivos maiores que 100KB encontrados:"
+          find . -type f -size +100k -print

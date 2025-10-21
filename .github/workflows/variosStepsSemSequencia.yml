@@ -1,0 +1,20 @@
+name: Vários Steps sem Sequência
+
+on: [push]
+jobs:
+  variosSteps_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rodar tudo em paralelo (mesmo job)
+        run: |
+          shopt -s nullglob
+          ( date > /tmp/date.out ) &
+          ( whoami > /tmp/user.out ) &
+          ( files=( *.html ); echo "${#files[@]}" > /tmp/html.out ) &
+          ( files=( *.css ); echo "${#files[@]}" > /tmp/css.out ) &
+          wait
+          echo "Data:"; cat /tmp/date.out
+          echo "Usuário:"; cat /tmp/user.out
+          echo "Quantos arquivos HTML:"; cat /tmp/html.out
+          echo "Quantos arquivos CSS:"; cat /tmp/css.out
+

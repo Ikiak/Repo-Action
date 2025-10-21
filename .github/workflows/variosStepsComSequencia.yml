@@ -1,0 +1,21 @@
+name: Vários Steps com Sequência
+
+on: [push]
+jobs:
+  variosSteps_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Data
+        run: date
+
+      - name: Usuario
+        run: whoami
+
+      - name: Quantos arquivos HTML
+        run: ls *.html | wc -l
+
+      - name: Quantos arquivos CSS
+        run: ls *.css | wc -l

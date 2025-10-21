@@ -1,0 +1,25 @@
+name: If Roda à Noite
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+
+jobs:
+  roDNote:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Calcular se é noite no Brasil
+        run: |
+          HORA=$(TZ='America/Sao_Paulo' date +'%H')
+
+          if [ "$HORA" -ge 18 ] || [ "$HORA" -lt 6 ]; then
+            echo "IS_NIGHT=true"  >> "$GITHUB_ENV"
+          else
+            echo "IS_NIGHT=false" >> "$GITHUB_ENV"
+          fi
+
+      - name: Rodar somente à noite
+        if: ${{ env.IS_NIGHT == 'true' }}
+        run: |
+          echo "Executando script noturno"
